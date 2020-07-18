@@ -1,5 +1,9 @@
 # CronaDataParser
-Small app to read data about Corona
+
+![.NET Core](https://github.com/Glattetre/CronaDataParser/workflows/.NET%20Core/badge.svg)
+
+Small app to read data about Corona.
+
 
 Data is loaded from: https://ourworldindata.org/coronavirus-data
 Run console application and data is exported using csv (with ';' as delimiter) for countries selected in program.cs
