@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronaSummerStatus", "CoronaSummerStatus\CoronaSummerStatus.csproj", "{38B898F7-4E68-4295-9342-5A0F8B815837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoronaSummerStatus.Tests", "CoronaSomer.Tests\CoronaSummerStatus.Tests.csproj", "{CB765295-031C-4CA0-80B5-BF7A8019EAD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronaSummerStatus.Tests", "CoronaSomer.Tests\CoronaSummerStatus.Tests.csproj", "{CB765295-031C-4CA0-80B5-BF7A8019EAD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4994823E-763A-4625-A0FF-3B617BF1C15B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
