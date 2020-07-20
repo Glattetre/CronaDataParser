@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using Glattetre.Covid19Data;
 using System;
 using System.Threading.Tasks;
 

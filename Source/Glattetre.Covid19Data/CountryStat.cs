@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace CoronaSummerStatus
+namespace Glattetre.Covid19Data
 {
     public class CountryStat
     {
