@@ -65,7 +65,7 @@ namespace ExportToMarkdown
                 file.WriteLine();
 
                 file.WriteLine("# Last days");
-                file.WriteLine("Nmber as of two days ago, as last two days often miss data");
+                file.WriteLine("Number as of two days ago, as last two days often miss data");
                 file.WriteLine();
                 var date = DateTime.Now.AddDays(-2);
                 file.WriteLine($"Up to {date.Year}-{date.Month}-{date.Day}");
@@ -92,7 +92,7 @@ namespace ExportToMarkdown
             static void WithWeeks(Action<int> withWeek)
             {
                 var thisWeek = NorWeekHelper.GetWeekNumber();
-                for (var weekNumber = thisWeek - 10; weekNumber <= thisWeek; weekNumber++)
+                for (var weekNumber = thisWeek - 5; weekNumber <= thisWeek; weekNumber++)
                 {
                     withWeek(weekNumber);
                 }
