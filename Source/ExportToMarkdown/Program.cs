@@ -66,8 +66,11 @@ namespace ExportToMarkdown
 
                 file.WriteLine("# Last days");
                 file.WriteLine("Nmber as of two days ago, as last two days often miss data");
+                file.WriteLine();
                 var date = DateTime.Now.AddDays(-2);
                 file.WriteLine($"Up to {date.Year}-{date.Month}-{date.Day}");
+
+                file.WriteLine();
 
                 // Heading
                 file.WriteLine("|Country|last 28 days|Last 14 days|Last 7 days|Last 3 days|");
@@ -94,6 +97,8 @@ namespace ExportToMarkdown
                     withWeek(weekNumber);
                 }
             }
+
+ 
         }
     }
 }
