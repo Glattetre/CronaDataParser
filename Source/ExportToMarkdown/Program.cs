@@ -37,6 +37,7 @@ namespace ExportToMarkdown
                 file.WriteLine("# New covid-19 per 100k and week");
                 file.WriteLine($"Updated {DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}");
 
+                file.WriteLine(@"Data Source: https://github.com/owid/covid-19-data/tree/master/public/data");
                 file.WriteLine();
 
                 file.WriteLine("# Per week");
@@ -64,21 +65,23 @@ namespace ExportToMarkdown
                 file.WriteLine();
 
                 file.WriteLine("# Last days");
+                file.WriteLine("Nmber as of two days ago, as last two days often miss data");
+                var date = DateTime.Now.AddDays(-2);
+                file.WriteLine($"Up to {date.Year}-{date.Month}-{date.Day}");
 
                 // Heading
-                file.WriteLine("|Country|last 28 days|Last 14 days|Last 7 days|Last 3 days|Last 3, 2 days ago|");
-                file.WriteLine("| --- | --: | --: | --: | --: || --: |");
+                file.WriteLine("|Country|last 28 days|Last 14 days|Last 7 days|Last 3 days|");
+                file.WriteLine("| --- | --: | --: | --: | --: |");
                 foreach (var countryIso3 in countries)
                 {
                     var country = parser.GetCountry(countryIso3);
 
-                    var last28 = country.NewCasesPerWeekPer100K(28).ToString("0.00");
-                    var last14 = country.NewCasesPerWeekPer100K(14).ToString("0.00");
-                    var last7 = country.NewCasesPerWeekPer100K(7).ToString("0.00");
-                    var last3 = country.NewCasesPerWeekPer100K(3).ToString("0.00");
-                    var last3ago2 = country.NewCasesPerWeekPer100K(3,2).ToString("0.00");
+                    var last28 = country.NewCasesPerWeekPer100K(28,2).ToString("0.00");
+                    var last14 = country.NewCasesPerWeekPer100K(14,2).ToString("0.00");
+                    var last7 = country.NewCasesPerWeekPer100K(7,2).ToString("0.00");
+                    var last3 = country.NewCasesPerWeekPer100K(3,2).ToString("0.00");
 
-                    file.WriteLine($"|{country.Location}|{last28}|{last14}|{last7}|{last3}|{last3ago2}|");
+                    file.WriteLine($"|{country.Location}|{last28}|{last14}|{last7}|{last3}|");
                 }
 
             }
