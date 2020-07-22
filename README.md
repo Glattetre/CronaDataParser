@@ -18,7 +18,7 @@ https://www.fhi.no/contentassets/0c17dede311e4e8f823a0e021d1f3ad0/2020.07.10-tal
 ## CoronaSummerStatus
 Run console application and data is exported using csv (with ';' as delimiter) for countries selected in program.cs
 
-## CoronaSummerStatus
+## ExportToMarkdown
 Expot a new markdown file in the [Results folder](https://github.com/Glattetre/CronaDataParser/tree/master/Results).
 
 # Results
