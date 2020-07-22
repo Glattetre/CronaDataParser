@@ -18,7 +18,7 @@ namespace Glattetre.Covid19Data
         {
             if (data == null || data.Length == 0)
                 return 0;
-
+            
             return data.Average(d => d.NewCasesPerMillion * 7 / 10);
         }
         public static double NewCasesPerWeekPer100K(this CountryStat stat, int days = 14, int skip = 0)

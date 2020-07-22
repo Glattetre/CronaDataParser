@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Source\Glattetre.Covid19Data\Glattetre.Covid19Data.csproj" />
+    <ProjectReference Include="..\Glattetre.Covid19Data\Glattetre.Covid19Data.csproj" />
   </ItemGroup>
 
 </Project>

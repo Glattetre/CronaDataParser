@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using System.IO;
-using CoronaSummerStatus;
 using System;
 using System.Linq;
 using Glattetre.Covid19Data;
