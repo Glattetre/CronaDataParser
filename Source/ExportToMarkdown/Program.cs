@@ -57,7 +57,7 @@ namespace ExportToMarkdown
                     var country = parser.GetCountry(countryIso3);
 
                     file.Write($"|{country.Location}|");
-                    WithWeeks(w => file.Write($"{country.Data.GetDataForWeek(w).NewCasesPerWeekPer100K().ToString("0.00")} |"));
+                    WithWeeks(w => file.Write($"{country.Data.GetDataForWeek(w).NewCasesPerWeekPer100K().MS()} |"));
                     file.WriteLine();
 
                 }
@@ -65,7 +65,7 @@ namespace ExportToMarkdown
                 file.WriteLine();
 
                 file.WriteLine("# Last days");
-                file.WriteLine("Number as of two days ago, as last two days often miss data");
+                file.WriteLine("Number as of two days ago, as last two days often miss data.  Data is average per day, multiplied by 7.");
                 file.WriteLine();
                 var date = DateTime.Now.AddDays(-2);
                 file.WriteLine($"Up to {date.Year}-{date.Month}-{date.Day}");
@@ -79,26 +79,39 @@ namespace ExportToMarkdown
                 {
                     var country = parser.GetCountry(countryIso3);
 
-                    var last28 = country.NewCasesPerWeekPer100K(28,2).ToString("0.00");
-                    var last14 = country.NewCasesPerWeekPer100K(14,2).ToString("0.00");
-                    var last7 = country.NewCasesPerWeekPer100K(7,2).ToString("0.00");
-                    var last3 = country.NewCasesPerWeekPer100K(3,2).ToString("0.00");
+                    var last28 = country.NewCasesPerWeekPer100K(28, 2).MS();
+                    var last14 = country.NewCasesPerWeekPer100K(14, 2).MS();
+                    var last7 = country.NewCasesPerWeekPer100K(7, 2).MS();
+                    var last3 = country.NewCasesPerWeekPer100K(3, 2).MS();
 
                     file.WriteLine($"|{country.Location}|{last28}|{last14}|{last7}|{last3}|");
                 }
 
             }
-
-            static void WithWeeks(Action<int> withWeek)
+        }
+        static void WithWeeks(Action<int> withWeek)
+        {
+            var thisWeek = NorWeekHelper.GetWeekNumber();
+            for (var weekNumber = thisWeek - 5; weekNumber <= thisWeek; weekNumber++)
             {
-                var thisWeek = NorWeekHelper.GetWeekNumber();
-                for (var weekNumber = thisWeek - 5; weekNumber <= thisWeek; weekNumber++)
-                {
-                    withWeek(weekNumber);
-                }
+                withWeek(weekNumber);
             }
+        }
 
- 
+
+
+    }
+
+    static class Extensions
+    {
+        public static string MS(this double number)
+        {
+            var strNumber = number.ToString("0.00");
+            if (number >= 10)
+            {
+                strNumber = $"**{strNumber}**";
+            }
+            return strNumber;
         }
     }
 }
