@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronaSummerStatus.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronaSummerStatus", "Source\CoronaSummerStatus\CoronaSummerStatus.csproj", "{D2A49208-A842-42D7-A102-D442728942AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glattetre.Covid19Data.Web", "Source\Glattetre.Covid19Data.Web\Glattetre.Covid19Data.Web.csproj", "{4F84F7A1-25CE-4736-B5C5-1D84D14A6367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glattetre.Covid19Data.Web", "Source\Glattetre.Covid19Data.Web\Glattetre.Covid19Data.Web.csproj", "{4F84F7A1-25CE-4736-B5C5-1D84D14A6367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glattetre.Covid19Data.Web.Tests", "Tests\Glattetre.Covid19Data.Web.Tests\Glattetre.Covid19Data.Web.Tests.csproj", "{A2EC4677-21E5-4E56-8413-F5B8E2127AED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,12 +48,17 @@ Global
 		{4F84F7A1-25CE-4736-B5C5-1D84D14A6367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F84F7A1-25CE-4736-B5C5-1D84D14A6367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F84F7A1-25CE-4736-B5C5-1D84D14A6367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2EC4677-21E5-4E56-8413-F5B8E2127AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EC4677-21E5-4E56-8413-F5B8E2127AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2EC4677-21E5-4E56-8413-F5B8E2127AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2EC4677-21E5-4E56-8413-F5B8E2127AED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{27B10694-1CF7-4443-8508-A518172B8F24} = {4D87103F-9667-4E80-AC02-922650EF8E86}
+		{A2EC4677-21E5-4E56-8413-F5B8E2127AED} = {4D87103F-9667-4E80-AC02-922650EF8E86}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD51FFF2-6B25-4450-B058-E50C2A10BFAE}
