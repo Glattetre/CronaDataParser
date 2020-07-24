@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Flurl.Http;
 using System.Threading;
 
 namespace Glattetre.Covid19Data.Web.Services
@@ -42,7 +41,9 @@ namespace Glattetre.Covid19Data.Web.Services
                     return _parser;
                 }
 
-                var data = await Source.GetStringAsync();
+                //var data = await Source.GetStringAsync();
+                var response = await _httpClient.GetAsync(Source);
+                var data = await response.Content.ReadAsStringAsync();
                 _parser = new CronaDataParser(data);
                 _loadTime = DateTime.UtcNow;
 
@@ -57,9 +58,11 @@ namespace Glattetre.Covid19Data.Web.Services
         public async Task<CountryListItemModel[]> GetCountryList()
         {
             var parser = await GetParserAsync();
-            var retVal = parser.Select(c => new CountryListItemModel 
+            var retVal = parser.Select(i => new CountryListItemModel 
             {
-                Code = c.
+                Code = i.Key,
+                Name = i.Value.Location,
+                Continent = i.Value.Continent,
             }).ToArray();
             return retVal;
         }

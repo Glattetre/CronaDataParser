@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Glattetre.Covid19Data
 {
-    public class CronaDataParser : IEnumerable<CountryStat>
+    public class CronaDataParser : IEnumerable<KeyValuePair<string,CountryStat>>
     {
 
         Dictionary<string, CountryStat> _countries;
@@ -25,14 +25,14 @@ namespace Glattetre.Covid19Data
             return _countries[iso3];
         }
 
-        public IEnumerator<CountryStat> GetEnumerator()
+        public IEnumerator<KeyValuePair<string, CountryStat>> GetEnumerator()
         {
-            return _countries.Values.GetEnumerator();
+            return _countries.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _countries.Values.GetEnumerator();
+            return _countries.GetEnumerator();
         }
     }
 }

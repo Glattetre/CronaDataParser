@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Glattetre.Covid19Data.Web.Tests
 {
@@ -38,12 +39,12 @@ namespace Glattetre.Covid19Data.Web.Tests
         }
 
         [Test]
-        public void GetCountryList_Any_ContainsNorway()
+        public async Task GetCountryList_Any_ContainsNorway()
         {
 
             // arrange
             // act
-            var countryList = _coronaService.GetCountryList();
+            var countryList = await _coronaService.GetCountryList();
             // assert
             Assert.That(countryList, Has.Exactly(1).Items.Property(nameof(CountryListItemModel.Name)).EqualTo("Norway"));
         }
