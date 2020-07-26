@@ -2,6 +2,7 @@
 using Glattetre.Covid19Data;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ExportToMarkdown
@@ -57,7 +58,7 @@ namespace ExportToMarkdown
                     var country = parser.GetCountry(countryIso3);
 
                     file.Write($"|{country.Location}|");
-                    WithWeeks(w => file.Write($"{country.Data.GetDataForWeek(w).NewCasesPerWeekPer100K().MS()} |"));
+                    WithWeeks(w => file.Write($"{country.Data.GetDataForWeek(w).ToMarkdown()} |"));
                     file.WriteLine();
 
                 }
@@ -79,10 +80,10 @@ namespace ExportToMarkdown
                 {
                     var country = parser.GetCountry(countryIso3);
 
-                    var last28 = country.NewCasesPerWeekPer100K(28, 2).MS();
-                    var last14 = country.NewCasesPerWeekPer100K(14, 2).MS();
-                    var last7 = country.NewCasesPerWeekPer100K(7, 2).MS();
-                    var last3 = country.NewCasesPerWeekPer100K(3, 2).MS();
+                    var last28 = country.GetLatestData(28, 2).ToMarkdown();
+                    var last14 = country.GetLatestData(14, 2).ToMarkdown();
+                    var last7 = country.GetLatestData(7, 2).ToMarkdown();
+                    var last3 = country.GetLatestData(3, 2).ToMarkdown();
 
                     file.WriteLine($"|{country.Location}|{last28}|{last14}|{last7}|{last3}|");
                 }
@@ -104,14 +105,31 @@ namespace ExportToMarkdown
 
     static class Extensions
     {
-        public static string MS(this double number)
+
+
+        public static string ToMarkdown(this Datum[] dates)
         {
+            var number = dates.NewCasesPerWeekPer100K();
+
             var strNumber = number.ToString("0.00");
             if (number >= 10)
             {
                 strNumber = $"**{strNumber}**";
             }
+            // ToDo: Need more testing!
+            //var withTested = dates.Where(d => d.NewTestsPerThousand != null);
+            //if (withTested.Any())
+            //{
+            //    var newCasesPerThousd = withTested.Sum(d => d.NewCasesPerMillion) * 1000;
+            //    var totalTestedPerThousend = withTested.Sum(d => (double)d.NewTestsPerThousand);
+            //    var positive = 100 * totalTestedPerThousend / newCasesPerThousd ;
+            //    var bold = positive >= 5 ? "**" : "";
+
+            //    strNumber += $" ({bold}{positive:0.00}%{bold})";
+            //}
+
             return strNumber;
+
         }
     }
 }

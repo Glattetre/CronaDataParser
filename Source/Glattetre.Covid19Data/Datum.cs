@@ -36,5 +36,9 @@ namespace Glattetre.Covid19Data
         [JsonProperty("stringency_index")]
         public double? StringencyIndex;
 
+        [JsonProperty("new_tests_per_thousand")]
+        public double? NewTestsPerThousand;
+        //
+
     }
 }
