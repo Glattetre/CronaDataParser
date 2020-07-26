@@ -38,6 +38,8 @@ namespace ExportToMarkdown
                 file.WriteLine("# New covid-19 per 100k and week");
                 file.WriteLine($"Updated {DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}");
 
+                file.WriteLine("Percent positive tests are calculated when data is available based on new cases per test.  Values are shown in parenthesis.  Bold is more than 5%.");
+                file.WriteLine();
                 file.WriteLine(@"Data Source: https://github.com/owid/covid-19-data/tree/master/public/data");
                 file.WriteLine();
 
@@ -117,16 +119,16 @@ namespace ExportToMarkdown
                 strNumber = $"**{strNumber}**";
             }
             // ToDo: Need more testing!
-            //var withTested = dates.Where(d => d.NewTestsPerThousand != null);
-            //if (withTested.Any())
-            //{
-            //    var newCasesPerThousd = withTested.Sum(d => d.NewCasesPerMillion) * 1000;
-            //    var totalTestedPerThousend = withTested.Sum(d => (double)d.NewTestsPerThousand);
-            //    var positive = 100 * totalTestedPerThousend / newCasesPerThousd ;
-            //    var bold = positive >= 5 ? "**" : "";
+            var withTested = dates.Where(d => d.NewTestsPerThousand > 0.0);
+            if (withTested.Any())
+            {
+                var newCasesPerMillion = withTested.Sum(d => d.NewCasesPerMillion) ;
+                var totalTestedPerMillion = withTested.Sum(d => (double)d.NewTestsPerThousand) * 1000;
+                var positive = 100 * newCasesPerMillion / totalTestedPerMillion;
+                var bold = positive >= 5 ? "**" : "";
 
-            //    strNumber += $" ({bold}{positive:0.00}%{bold})";
-            //}
+                strNumber += $" ({bold}{positive:0.00}%{bold})";
+            }
 
             return strNumber;
 
