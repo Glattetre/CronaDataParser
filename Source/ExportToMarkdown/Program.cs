@@ -54,7 +54,7 @@ namespace ExportToMarkdown
                 WithWeeks(w => file.Write($" --: |"));
                 file.WriteLine();
 
-                var countries = new string[] { "NOR", "DNK", "SWE", "DEU", "CHE", "AUT", "ITA", "USA", "ESP", "GBR", "FRA", "NLD", "BEL" };
+                var countries = new string[] { "NOR", "DNK", "SWE", "DEU", "CHE", "AUT", "ITA", "USA", "ESP", "GBR", "FRA", "NLD", "BEL", "ROU", "TTO", "GUY", "LKA",  };
                 foreach (var countryIso3 in countries)
                 {
                     var country = parser.GetCountry(countryIso3);
