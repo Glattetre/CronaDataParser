@@ -21,7 +21,7 @@ namespace ExportToMarkdown
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
-            string fileName = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}.md";
+            string fileName = $"{DateTime.Now.Year}-{DateTime.Now.Month.ToString().PadLeft(2,'0')}-{DateTime.Now.Day.ToString().PadLeft(2, '0')}.md";
 
             string path = Path.Combine(folder, fileName);
             if (File.Exists(path))
