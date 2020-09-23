@@ -1,8 +1,9 @@
-﻿using Flurl.Http;
+﻿//using Flurl.Http;
 using Glattetre.Covid19Data;
 using System;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ExportToMarkdown
@@ -11,9 +12,13 @@ namespace ExportToMarkdown
     {
         static async Task Main(string[] args)
         {
+
             Console.WriteLine("New covid-19 per 100k and week");
             var source = "https://covid.ourworldindata.org/data/owid-covid-data.json";
-            var data = await source.GetStringAsync();
+            var client = new HttpClient();
+            var response = await client.GetAsync(source,HttpCompletionOption.ResponseHeadersRead);
+            var data = await response.Content.ReadAsStringAsync();
+
 
             var parser = new CronaDataParser(data);
 
