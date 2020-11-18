@@ -100,7 +100,7 @@ namespace ExportToMarkdown
         static void WithWeeks(Action<int> withWeek)
         {
             var thisWeek = NorWeekHelper.GetWeekNumber();
-            for (var weekNumber = thisWeek - 5; weekNumber <= thisWeek; weekNumber++)
+            for (var weekNumber = thisWeek - 10; weekNumber <= thisWeek; weekNumber++)
             {
                 withWeek(weekNumber);
             }
